@@ -40,19 +40,18 @@ import fr.paris.lutece.portal.business.page.PageHome;
 import fr.paris.lutece.portal.business.portlet.PortletHome;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
+import fr.paris.lutece.portal.service.page.IPageService;
 import fr.paris.lutece.portal.service.page.PageResourceIdService;
-import fr.paris.lutece.portal.service.page.PageService;
+import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.portal.web.portlet.PortletJspBean;
 import fr.paris.lutece.util.ReferenceItem;
 import fr.paris.lutece.util.ReferenceList;
 import fr.paris.lutece.util.html.HtmlTemplate;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -64,9 +63,6 @@ public class LinkPagesPortletJspBean extends PortletJspBean
 {
     ////////////////////////////////////////////////////////////////////////////
     // Constants
-
-    // Right
-    public static final String RIGHT_MANAGE_ADMIN_SITE = "CORE_ADMIN_SITE";
 
     // MARKS
     private static final String MARK_COMBO_LINKPAGES = "combo_linkpages";
@@ -82,7 +78,6 @@ public class LinkPagesPortletJspBean extends PortletJspBean
 
     //Parameters
     private static final String PARAMETER_LINKPAGE = "linkpage";
-    private static final String PARAMETER_PAGE_ID = "page_id";
     private static final String PARAMETER_LINKPAGE_ORDER = "linkpage_order";
 
     //Templates
@@ -94,6 +89,9 @@ public class LinkPagesPortletJspBean extends PortletJspBean
 
     // Jsp
     private static final String JSP_DO_MODIFY_PORTLET = "../../DoModifyPortlet.jsp";
+
+    private IPageService _pageService = (IPageService) SpringContextService.getBean("pageService");
+
 
     /**
      * Returns portlet's properties prefix
@@ -150,8 +148,7 @@ public class LinkPagesPortletJspBean extends PortletJspBean
 
         for ( ReferenceItem item : linkPage )
         {
-            if ( PageService.getInstance(  )
-                                .isAuthorizedAdminPage( Integer.parseInt( item.getCode(  ) ),
+            if ( _pageService.isAuthorizedAdminPage( Integer.parseInt( item.getCode(  ) ),
                         PageResourceIdService.PERMISSION_VIEW, getUser(  ) ) )
             {
                 linkPageAuthorized.add( item );
@@ -249,12 +246,11 @@ public class LinkPagesPortletJspBean extends PortletJspBean
      */
     private String getLinkPagesInPortletList( int nPortletId )
     {
-        StringBuffer strLinkPagesList = new StringBuffer(  );
+        StringBuilder strLinkPagesList = new StringBuilder(  );
 
         for ( Page page : LinkPagesPortletHome.getLinkPagesInPortletList( nPortletId ) )
         {
-            if ( PageService.getInstance(  )
-                                .isAuthorizedAdminPage( page.getId(  ), PageResourceIdService.PERMISSION_VIEW,
+            if ( _pageService.isAuthorizedAdminPage( page.getId(  ), PageResourceIdService.PERMISSION_VIEW,
                         getUser(  ) ) )
             {
                 //Page page = (Page) i.next (  );
