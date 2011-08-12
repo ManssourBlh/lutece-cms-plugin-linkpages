@@ -42,6 +42,7 @@
 
     <properties>
         <jiraProjectName>LINKPAGES</jiraProjectName>
+        <jiraComponentId>10168</jiraComponentId>
     </properties>
     <scm>
         <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/cms/plugin-linkpages</connection>
