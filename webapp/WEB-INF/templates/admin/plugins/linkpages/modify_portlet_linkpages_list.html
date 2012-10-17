@@ -1,34 +1,31 @@
+<div class="row-fluid">
+	<div class="span12">
+	<fieldset>
+	<legend>Liste des pages associ&eacute;es :</legend>
+		<div class="well">
+			<p class="lead">Ins&eacute;rer une nouvelle page dans la liste</p>
+			<form method="post" action="plugins/linkpages/DoSelectLinkPage.jsp" >
+			<input type="hidden" name="page_id" value="${page_id}" />
+			<input type="hidden" name="portlet_id" value="${portlet_id}" />
+				<p>
+					<@comboWithParams name="linkpage" default_value="1" additionalParameters="class=\"input-xlarge\"" items=combo_linkpages />
+					Rang: <@comboWithParams name="linkpage_order" default_value="${linkpage_order}" additionalParameters="class=\"input-mini\"" items=combo_linkpages_order /></td>
+					<button type="submit" class="btn btn-primary btn-small">
+						<i class="icon-plus icon-white"></i>&nbsp;Ajouter
+					</button>
+				</p>
+			</form>
+		</div>
+		<table class="table table-striped table-condensed">
+			<tr>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>Rang</th>
+				<th>Actions</th>
+			</tr>
+			<!-- inserting the linkpages list -->
+			${linkpages_list}
+		</table>
+		</fieldset>
+	</div>
 </div>
-<div class="content-box" >
-    <h2>Liste des pages associ&eacute;es :</h2>
-    <table class="admin-site-preview">
-    <tr>
-        <th >Nom :</th>
-        <th>Description :</th>
-        <th>Rang :</th>
-        <th>Suppression :</th>
-    </tr>
-    </form>
-    ${linkpages_list}  <!-- inserting the linkpages list -->
-    </table>
-    
-	</div>
-
-<br /><br />
-
-	<div class="content-box" >
-    <table>
-        <tr>
-            <h2>Ins&eacute;rer une nouvelle page dans la liste : </h2>
-        </tr>
-        <tr>
-            <form method="post" action="plugins/linkpages/DoSelectLinkPage.jsp" >
-                <td> <@combo name="linkpage" default_value="1" items=combo_linkpages /></td>
-                <td> Rang:<@combo name="linkpage_order" default_value="${linkpage_order}" items=combo_linkpages_order /></td>
-                <input type="hidden" name="portlet_id" value="${portlet_id}" />
-                <input type="hidden" name="page_id" value="${page_id}" />
-                <td><input type ="submit"  value="Ajouter" class="button" /></td>
-            </form>
-        </tr>
-    </table>
-	</div>
