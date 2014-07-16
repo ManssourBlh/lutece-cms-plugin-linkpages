@@ -7,16 +7,16 @@
     <td>&nbsp;${linkpage_name}</td>
     <td>&nbsp;${linkpage_description}</td>
     <td>
-		<span class="input-append">
-		<@comboWithParams name="linkpage_order" default_value="${linkpage_order}" additionalParameters="class=\"input-mini\"" items=combo_linkpages_order />
-		<button type="submit" class="btn btn-primary" title="Modifier">
-			<i class="icon-ok icon-white"></i> 
+		<span class="input-group">
+		<@comboWithParams name="linkpage_order" default_value="${linkpage_order}" additionalParameters="class=\"\"" items=combo_linkpages_order />
+		<button type="submit" class="btn btn-primary btn-xs" title="Modifier">
+			<i class="glyphicon glyphicon-ok"></i> 
 		</button>
 		</span>
 	</td>
 	<td>
-		<a class="btn btn-danger btn-small" href="plugins/linkpages/DoUnselectLinkPage.jsp?portlet_id=${portlet_id}&page_id=${linkpage_id}">
-			<i class="icon-trash icon-white"></i> 
+		<a class="btn btn-danger btn-xs" href="plugins/linkpages/DoUnselectLinkPage.jsp?portlet_id=${portlet_id}&page_id=${linkpage_id}">
+			<i class="glyphicon glyphicon-trash"></i> 
 		</a>
 	</td>
 </form>

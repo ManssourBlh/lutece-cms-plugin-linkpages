@@ -1,6 +1,6 @@
 </form>
-<div class="row-fluid">
-	<div class="span12">
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12">
 	<fieldset>
 	<legend>Liste des pages associ&eacute;es :</legend>
 		<div class="well">
@@ -9,10 +9,12 @@
 			<input type="hidden" name="page_id" value="${page_id}" />
 			<input type="hidden" name="portlet_id" value="${portlet_id}" />
 				<p>
-					<@comboWithParams name="linkpage" default_value="1" additionalParameters="class=\"input-xlarge\"" items=combo_linkpages />
-					Rang: <@comboWithParams name="linkpage_order" default_value="${linkpage_order}" additionalParameters="class=\"input-mini\"" items=combo_linkpages_order /></td>
-					<button type="submit" class="btn btn-primary btn-small">
-						<i class="icon-plus icon-white"></i>&nbsp;Ajouter
+					<@comboWithParams name="linkpage" default_value="1" additionalParameters="class=\"form-control input-sm\"" items=combo_linkpages />
+				</p>
+				<p>
+					Rang: <@comboWithParams name="linkpage_order" default_value="${linkpage_order}" additionalParameters="class=\"input-mini\"" items=combo_linkpages_order />
+					<button type="submit" class="btn btn-primary btn-xs">
+						<i class="glyphicon glyphicon-plus"></i>&nbsp;Ajouter
 					</button>
 				</p>
 			</form>
