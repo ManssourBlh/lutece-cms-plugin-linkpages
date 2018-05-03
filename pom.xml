@@ -1,18 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
     <parent>
-        <artifactId>lutece-plugins-pom</artifactId>
-        <groupId>fr.paris.lutece.plugins</groupId>
-        <version>3.7</version>
+        <artifactId>lutece-global-pom</artifactId>
+        <groupId>fr.paris.lutece.tools</groupId>
+        <version>3.0.12</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>plugin-linkpages</artifactId>
     <packaging>lutece-plugin</packaging>
     <version>4.0.4-SNAPSHOT</version>
     <name>Lutece linkpages plugin</name>
-
     <repositories>
         <repository>
             <id>lutece</id>
@@ -29,7 +26,6 @@
             </snapshots>
         </repository>
     </repositories>
-
     <dependencies>
         <dependency>
             <groupId>fr.paris.lutece</groupId>
@@ -38,14 +34,13 @@
             <type>lutece-core</type>
         </dependency>
     </dependencies>
-
     <properties>
         <jiraProjectName>LINKPAGES</jiraProjectName>
         <jiraComponentId>10168</jiraComponentId>
     </properties>
     <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/cms/plugin-linkpages</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/cms/plugin-linkpages</developerConnection>
-        <url>http://dev.lutece.paris.fr/viewvc/lutece/portal/trunk/plugins/cms/plugin-linkpages</url>
+        <connection>scm:git:https://github.com/lutece-platform/lutece-cms-plugin-linkpages.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-cms-plugin-linkpages.git</developerConnection>
+        <url>https://github.com/lutece-platform/lutece-cms-plugin-linkpages.git</url>
     </scm>
 </project>
