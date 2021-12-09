@@ -1,44 +1,37 @@
 </form>
-<div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-12">
-		<div class="box">
-			<div class="box-header">
-				<h3 class="box-title"> #i18n{linkpages.modify_portlet_linkpages_list.linkpageInsertNewPage}</h3>
-				<div class="box-tools">
-					<form method="post" class="form-inline" action="jsp/admin/plugins/linkpages/DoSelectLinkPage.jsp">
-					<input type="hidden" name="page_id" value="${page_id!}">
-					<input type="hidden" name="portlet_id" value="${portlet_id!}">
-					<div class="form-group" style="margin: 0;">
-						<label for="linkpage" >Page</label>
-						<@comboWithParams name="linkpage" default_value="1" additionalParameters="class=\"form-control input-xs\"" items=combo_linkpages />
-					</div>
-					<div class="form-group" style="margin: 0;">
-						<label for="linkpage_order">Rang</label>
-						<div class="input-group" >
-							<@comboWithParams name="linkpage_order" default_value="${linkpage_order}" additionalParameters="class=\"form-control input-xs\"" items=combo_linkpages_order />
-							<span class="input-group-btn">
-								<button type="submit" class="btn btn-primary btn-xs" ttile="Ajouter">
-									<i class="fa fa-plus"></i> 
-								</button>
-							</span>
-						</div>
-					</div>
-					</form>
-				</div>
-            </div>
-            <div class="box-body">
+<@row>
+	<@columns>
+		<@box>
+			<@boxHeader title='#i18n{linkpages.modify_portlet_linkpages_list.linkpageInsertNewPage}'>
+				<@tform method='post' type='inline' action='jsp/admin/plugins/linkpages/DoSelectLinkPage.jsp'>
+					<@input type='hidden' name='page_id' value='${page_id!}' />
+					<@input type='hidden' name='portlet_id' value='${portlet_id!}' />
+					<@formGroup labelFor='linkpage' labelKey='Page'>
+						<@select name='linkpage' default_value='1' items=combo_linkpages />
+					</@formGroup>
+					<@formGroup labelFor='linkpage_order' labelKey='Rang'>
+						<@inputGroup>
+							<@select name='linkpage_order' default_value='${linkpage_order}' items=combo_linkpages_order />
+							<@inputGroupItem>
+								<@button type='submit"' title='Ajouter' buttonIcon='plus-circle' />
+							</@inputGroupItem>
+						</@inputGroup>
+					</@formGroup>
+				</@tform>
+			</@boxHeader>
+			<@boxBody>
 				<h3>#i18n{linkpages.modify_portlet_linkpages_list.pageTitle}</h3>
-				<table class="table table-hover table-condensed">
-					<tr>
-						<th>Nom</th>
-						<th>Description</th>
-						<th>Rang</th>
-						<th>Actions</th>
-					</tr>
+				<@table>
+					<@tr>
+						<@th>Nom</@th>
+						<@th>Description</@th>
+						<@th>Rang</@th>
+						<@th>Actions</@th>
+					</@tr>
 					<!-- inserting the linkpages list -->
 					${linkpages_list}
-				</table>
-			</div>
-		</div>
-	</div>
-</div>
+				</@table>
+			</@boxBody>
+		</@box>
+	</@columns>
+</@row>

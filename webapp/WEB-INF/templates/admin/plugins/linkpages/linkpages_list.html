@@ -1,25 +1,21 @@
-<tr>
-<form method="post" class="form-inline" action ="jsp/admin/plugins/linkpages/DoModifyOrderLinkPage.jsp">
-    <input type="hidden" name="portlet_id" value="${portlet_id}">
-	<input type="hidden" name="page_id" value="${linkpage_id}">
-	<input type="hidden" name="new_linkpage" value="${new_linkpage}">
-	<input type="hidden" value="${linkpage_id}">
-    <td>&nbsp;${linkpage_name}</td>
-    <td>&nbsp;${linkpage_description}</td>
-    <td class="col-md-1">
-		<div class="input-group">
-			<@comboWithParams name="linkpage_order" default_value="${linkpage_order}" additionalParameters="class=\"form-control input-xs\" " items=combo_linkpages_order />
-			<span class="input-group-btn">
-			<button type="submit" class="btn btn-primary btn-xs btn-flat" title="Modifier">
-				<i class="glyphicon glyphicon-ok"></i> 
-			</button>
-			</span>
-		</div>
-	</td>
-	<td>
-		<a class="btn btn-danger btn-xs btn-flat" href="jsp/admin/plugins/linkpages/DoUnselectLinkPage.jsp?portlet_id=${portlet_id}&page_id=${linkpage_id}">
-			<i class="glyphicon glyphicon-trash"></i> 
-		</a>
-	</td>
-</form>
-</tr>
+<@tr>
+	<@tform method='post' type='inline' action ='jsp/admin/plugins/linkpages/DoModifyOrderLinkPage.jsp'>
+		<@input type='hidden' name='portlet_id' value='${portlet_id}' />
+		<@input type='hidden' name='page_id' value='${linkpage_id}' />
+		<@input type='hidden' name='new_linkpage' value='${new_linkpage}' />
+		<@input type='hidden' value='${linkpage_id}' />
+		<@td>&nbsp;${linkpage_name}</@td>
+		<@td>&nbsp;${linkpage_description}</@td>
+		<@td md=1>
+			<@inputGroup>
+				<@select name='linkpage_order' default_value='${linkpage_order}' items=combo_linkpages_order />
+				<@inputGroupItem>
+					<@button type='submit' title='Modifier' buttonIcon='save' />
+				</@inputGroupItem>
+			</@inputGroup>
+		</@td>
+		<@td>
+			<@aButton href='jsp/admin/plugins/linkpages/DoUnselectLinkPage.jsp?portlet_id=${portlet_id}&page_id=${linkpage_id}' buttonIcon='trash' color='danger' size='sm' />
+		</@td>
+	</@tform>
+</@tr>
