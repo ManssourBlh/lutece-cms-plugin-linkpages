@@ -113,7 +113,24 @@ public class LinkPagesPortletJspBean extends PortletJspBean
     {
         String strIdPage = request.getParameter( PARAMETER_PAGE_ID );
         String strIdPortletType = request.getParameter( PARAMETER_PORTLET_TYPE_ID );
-        HtmlTemplate template = getCreateTemplate( strIdPage, strIdPortletType );
+
+        HashMap<String, Object> model = new HashMap<>( );
+        // LinkPages list combo
+        ReferenceList linkPageAuthorized = new ReferenceList(  );
+        ReferenceList linkPage = LinkPagesPortletHome.getLinkPagesList(  );
+
+        for ( ReferenceItem item : linkPage )
+        {
+            if ( _pageService.isAuthorizedAdminPage( Integer.parseInt( item.getCode(  ) ),
+                    PageResourceIdService.PERMISSION_VIEW, getUser(  ) ) )
+            {
+                linkPageAuthorized.add( item );
+            }
+        }
+
+        model.put( MARK_COMBO_LINKPAGES, linkPageAuthorized );
+
+        HtmlTemplate template = getCreateTemplate( strIdPage, strIdPortletType , model);
 
         return template.getHtml(  );
     }
@@ -187,8 +204,19 @@ public class LinkPagesPortletJspBean extends PortletJspBean
         //Portlet creation
         LinkPagesPortletHome.getInstance(  ).create( portlet );
 
-        //Displays the page with the new Portlet
-        return getPageUrl( nIdPage );
+        // insert linkpage
+        String strLinkPageId = request.getParameter( PARAMETER_LINKPAGE );
+
+        if ( ( strLinkPageId == null ) )
+        {
+            return AdminMessageService.getMessageUrl( request, MESSAGE_LINKPAGE_NOT_EXIST, AdminMessage.TYPE_ERROR );
+        }
+
+        int nLinkPageId = Integer.parseInt( strLinkPageId );
+
+        LinkPagesPortletHome.insertLinkPage( portlet.getId(), nLinkPageId, 1 );
+
+        return JSP_DO_MODIFY_PORTLET + "?" + PARAMETER_PORTLET_ID + "=" + portlet.getId();
     }
 
     /**
